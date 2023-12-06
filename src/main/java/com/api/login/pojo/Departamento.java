@@ -22,6 +22,6 @@ public class Departamento {
     @Column(name = "nombreDepartamento")
     private String nombreDepartamento;
 
-    @Column(name = "descripcion", length = 5000)
-    private String descripcion;
+    @Column(name = "descripcionDepartamento", length = 5000)
+    private String descripcionDepartamento;
 }

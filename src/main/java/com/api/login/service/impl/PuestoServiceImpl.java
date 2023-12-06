@@ -60,8 +60,9 @@ public class PuestoServiceImpl implements PuestoService {
 
                 // Actualiza los campos del usuario con los valores proporcionados en el mapa
 
-                puesto.setNombrePuesto(requestMap.get("nombrePuesto"));
-                puesto.setDescripcion(requestMap.get("descripcion"));
+                puesto.setNamePosition(requestMap.get("namePosition"));
+                puesto.setDeparmentPosition(requestMap.get("deparmentPosition"));
+                puesto.setFuntionsPosition(requestMap.get("funtionsPosition"));
 
 
                 // Actualiza el usuario en la base de datos
@@ -119,8 +120,9 @@ public class PuestoServiceImpl implements PuestoService {
 
 
     private boolean validateRegister(Map<String,String> requestMap){
-        if (requestMap.containsKey("nombrePuesto") &&
-                requestMap.containsKey("descripcion")){
+        if (requestMap.containsKey("namePosition") &&
+                requestMap.containsKey("deparmentPosition") &&
+                requestMap.containsKey("funtionsPositio")){
             return true;
         }
         return false;
@@ -128,17 +130,18 @@ public class PuestoServiceImpl implements PuestoService {
 
     private Puesto getPuestoFromMap(Map<String, String> requestMap){
         Puesto puesto = new Puesto();
-        puesto.setNombrePuesto(requestMap.get("nombrePuesto"));
-        puesto.setDescripcion(requestMap.get("descripcion"));
+        puesto.setNamePosition(requestMap.get("namePosition"));
+        puesto.setDeparmentPosition(requestMap.get("deparmentPosition"));
+        puesto.setFuntionsPosition(requestMap.get("funtionsPositio"));
         return puesto;
     }
 
     private void insertar(Map<String,String> requestMap){
         try {
             Puesto puesto = new Puesto();
-            puesto.setNombrePuesto((String) requestMap.get("nombrePuesto"));
-            puesto.setDescripcion((String) requestMap.get("descripcion"));
-
+            puesto.setNamePosition((String) requestMap.get("namePosition"));
+            puesto.setDeparmentPosition((String) requestMap.get("deparmentPosition"));
+            puesto.setFuntionsPosition((String) requestMap.get("funtionsPosition"));
 
         }catch (Exception exception){
             exception.printStackTrace();

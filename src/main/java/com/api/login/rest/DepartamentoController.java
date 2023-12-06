@@ -21,7 +21,6 @@ public class DepartamentoController {
     @Autowired
     private DepartamentoService departamentoService;
 
-
     @PostMapping("/register")
     public ResponseEntity<String> registrarEmpresa(@RequestBody(required = true) Map<String,String> requestMap){
         try {

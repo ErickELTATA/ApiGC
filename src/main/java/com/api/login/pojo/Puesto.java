@@ -13,13 +13,17 @@ import org.hibernate.annotations.DynamicUpdate;
 @Table(name = "puesto")
 public class Puesto {
     @Id
-    @Column(name = "idPuesto")
+    @Column(name = "idPosition")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPuesto;
 
-    @Column(name = "nombrePuesto")
-    private String nombrePuesto;
+    @Column(name = "namePosition")
+    private String namePosition;
 
-    @Column(name = "descripcion", length = 5000)
-    private String descripcion;
+    @Column(name = "deparmentPosition")
+    private String deparmentPosition;
+
+
+    @Column(name = "funtionsPosition", length = 5000)
+    private String funtionsPosition;
 }

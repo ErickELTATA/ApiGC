@@ -63,7 +63,7 @@ public class DepartamentoServiceImpl implements DepartamentoService {
                 // Actualiza los campos del usuario con los valores proporcionados en el mapa
 
                 departamento.setNombreDepartamento(requestMap.get("nombreDepartamento"));
-                departamento.setDescripcion(requestMap.get("descripcion"));
+                departamento.setDescripcionDepartamento(requestMap.get("descripcionDepartamento"));
 
 
                 // Actualiza el usuario en la base de datos
@@ -122,7 +122,7 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
     private boolean validateRegister(Map<String,String> requestMap){
         if (requestMap.containsKey("nombreDepartamento") &&
-                requestMap.containsKey("descripcion")){
+                requestMap.containsKey("descripcionDepartamento")){
             return true;
         }
         return false;
@@ -131,7 +131,7 @@ public class DepartamentoServiceImpl implements DepartamentoService {
     private Departamento getDepartamentoFromMap(Map<String, String> requestMap){
         Departamento departamento = new Departamento();
         departamento.setNombreDepartamento(requestMap.get("nombreDepartamento"));
-        departamento.setDescripcion(requestMap.get("descripcion"));
+        departamento.setDescripcionDepartamento(requestMap.get("descripcionDepartamento"));
         return departamento;
     }
 
@@ -139,7 +139,7 @@ public class DepartamentoServiceImpl implements DepartamentoService {
         try {
             Departamento departamento = new Departamento();
             departamento.setNombreDepartamento((String) requestMap.get("nombreDepartamento"));
-            departamento.setDescripcion((String) requestMap.get("descripcion"));
+            departamento.setDescripcionDepartamento((String) requestMap.get("descripcionDepartamento"));
 
 
         }catch (Exception exception){
