@@ -58,6 +58,7 @@ public class SecurityConfig {
         return httpSecurity.build();
     }
 
+    /*
     @Bean
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.cors(withDefaults())
@@ -66,7 +67,7 @@ public class SecurityConfig {
                 .and()
                 .httpBasic();
     }
-
+*/
     @Bean
     public AuthenticationManager authenticationManager (AuthenticationConfiguration authenticationConfiguration) throws Exception{
 

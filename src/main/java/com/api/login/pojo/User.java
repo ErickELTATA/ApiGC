@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Entity
 @DynamicUpdate
 @DynamicInsert
-@Table(name = "usuariosLogin")
+@Table(name = "usuariosSGC")
 public class User{
 
     @Id
