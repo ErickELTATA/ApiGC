@@ -81,7 +81,7 @@ public class SecurityConfig {
         cc.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
         cc.setAllowedOrigins(Arrays.asList("/*"));
         cc.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "PUT","PATCH", "DELETE"));
-        cc.addAllowedOrigin("*");
+        cc.addAllowedOrigin("http://localhost:5173/");
         cc.setMaxAge(Duration.ZERO);
         cc.setAllowCredentials(Boolean.TRUE);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
