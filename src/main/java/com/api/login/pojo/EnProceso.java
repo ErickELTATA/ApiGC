@@ -31,6 +31,8 @@ public class EnProceso {
     @Column(name = "coDocumento")
     private String coDocumento;
 
+
     @Column(name = "nombreProceso")
     private String nombreProceso;
+
 }

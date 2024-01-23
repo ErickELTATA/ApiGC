@@ -1,12 +1,12 @@
 package com.api.login.service.impl;
 
 import com.api.login.constantes.UsuarioConstantes;
-import com.api.login.dao.EnProcesoDao;
-import com.api.login.pojo.EnProceso;
+import com.api.login.dao.ObjetivoProcesoDao;
 import com.api.login.pojo.Mision;
+import com.api.login.pojo.ObjetivoProceso;
 import com.api.login.security.jwt.JwtFilter;
 import com.api.login.security.jwt.JwtUtil;
-import com.api.login.service.EnProcesoService;
+import com.api.login.service.ObjetivoProcesoService;
 import com.api.login.util.ResenaUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,9 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class EnProcesoServiceImpl implements EnProcesoService {
+public class ObjetivoProcesoServiceImpl implements ObjetivoProcesoService {
     @Autowired
-    private EnProcesoDao enProcesoDao;
+    private ObjetivoProcesoDao objetivoProcesoDao;
 
     @Autowired
     private JwtFilter jwtFilter;
@@ -32,13 +32,12 @@ public class EnProcesoServiceImpl implements EnProcesoService {
     @Autowired
     private JwtUtil jwtUtil;
 
-
     @Override
     public ResponseEntity<String> register(Map<String, String> requestMap) {
         log.info("Registro interno de una empresa {}", requestMap);
         try {
             if (validateRegister(requestMap)){
-                enProcesoDao.save(getMisionFromMap(requestMap));
+                objetivoProcesoDao.save(getMisionFromMap(requestMap));
                 return ResenaUtil.getResponseEntity1("Empresa registrada con exito", HttpStatus.CREATED);
             }else {
                 return ResenaUtil.getResponseEntity1(UsuarioConstantes.INVALID_DATA, HttpStatus.BAD_REQUEST);
@@ -53,21 +52,18 @@ public class EnProcesoServiceImpl implements EnProcesoService {
     public ResponseEntity<String> update(Integer id,Map<String, String> requestMap ) {
         try {
             // Obtén el ID del usuario de la solicitud y trata de encontrarlo en la base de datos
-            Optional<EnProceso> optionalUser = enProcesoDao.findById(id);
+            Optional<ObjetivoProceso> optionalUser = objetivoProcesoDao.findById(id);
 
             if (!optionalUser.isEmpty()) {
                 // Obtén el usuario de la base de datos
-                EnProceso enProceso = optionalUser.get();
+                ObjetivoProceso objetivoProceso = optionalUser.get();
 
                 // Actualiza los campos del usuario con los valores proporcionados en el mapa
-                enProceso.setFechaElaboracion(Date.valueOf((requestMap.get("fechaElaboracion").toString())));
-                enProceso.setFechaEdicion(Date.valueOf((requestMap.get("fechaEdicion").toString())));
-                enProceso.setNoRevision(Integer.valueOf(requestMap.get("noRevision")));
-                enProceso.setCoDocumento((String) requestMap.get("coDocumento"));
-                enProceso.setNombreProceso((String) requestMap.get("nombreProceso"));
+                objetivoProceso.setContenido(requestMap.get("contenido"));
+
 
                 // Actualiza el usuario en la base de datos
-                enProcesoDao.save(enProceso);
+                objetivoProcesoDao.save(objetivoProceso);
 
                 // Retorna una respuesta con un mensaje exitoso y el código de estado 200 (OK)
                 return ResenaUtil.getResponseEntity1("Datos del usuario actualizados", HttpStatus.OK);
@@ -88,11 +84,11 @@ public class EnProcesoServiceImpl implements EnProcesoService {
     public ResponseEntity<String> delete(Integer userId) {
         try {
             // Trata de encontrar al usuario en la base de datos utilizando el ID proporcionado
-            Optional<EnProceso> optionalUser = enProcesoDao.findById(userId);
+            Optional<ObjetivoProceso> optionalUser = objetivoProcesoDao.findById(userId);
 
             if (optionalUser.isPresent()) {
                 // Elimina al usuario de la base de datos
-                enProcesoDao.deleteById(userId);
+                objetivoProcesoDao.deleteById(userId);
 
                 // Retorna una respuesta con un mensaje exitoso y el código de estado 200 (OK)
                 return ResenaUtil.getResponseEntity1("Resena eliminada exitosamente", HttpStatus.OK);
@@ -110,9 +106,9 @@ public class EnProcesoServiceImpl implements EnProcesoService {
     }
 
     @Override
-    public ResponseEntity<List<EnProceso>> getAllEnProceso() {
+    public ResponseEntity<List<ObjetivoProceso>> getAllObjetivo() {
         try{
-            return new ResponseEntity<>(enProcesoDao.getAllEnProceso(),HttpStatus.OK);
+            return new ResponseEntity<>(objetivoProcesoDao.findAll(),HttpStatus.OK);
         }catch (Exception exception){
             exception.printStackTrace();
         }
@@ -120,47 +116,25 @@ public class EnProcesoServiceImpl implements EnProcesoService {
     }
 
 
-
-
-    private EnProceso getEnProcesoFromMap(Map<String, String> requestMap) {
-        EnProceso enProceso = new EnProceso();
-        enProceso.setFechaElaboracion(Date.valueOf(requestMap.get("fechaElaboracion")));
-        enProceso.setFechaEdicion(Date.valueOf(requestMap.get("fechaEdicion")));
-        enProceso.setNoRevision(Integer.valueOf(requestMap.get("noRevision")));
-        enProceso.setCoDocumento(requestMap.get("coDocumento"));
-        enProceso.setNombreProceso(requestMap.get("nombreProceso"));
-        return enProceso;
-    }
-
     private boolean validateRegister(Map<String,String> requestMap){
-        if (requestMap.containsKey("fechaElaboracion") &&
-                requestMap.containsKey("fechaEdicion") &&
-                requestMap.containsKey("noRevision") &&
-                requestMap.containsKey("coDocumento") &&
-                requestMap.containsKey("nombreProceso")){
+        if (
+                requestMap.containsKey("contenido")){
             return true;
         }
         return false;
     }
 
-    private EnProceso getMisionFromMap(Map<String, String> requestMap){
-        EnProceso enProceso = new EnProceso();
-        enProceso.setFechaElaboracion(Date.valueOf((requestMap.get("fechaElaboracion").toString())));
-        enProceso.setFechaEdicion(Date.valueOf((requestMap.get("fechaEdicion").toString())));
-        enProceso.setNoRevision(Integer.valueOf(requestMap.get("noRevision")));
-        enProceso.setCoDocumento((String) requestMap.get("coDocumento"));
-        enProceso.setNombreProceso((String) requestMap.get("nombreProceso"));
-        return enProceso;
+    private ObjetivoProceso getMisionFromMap(Map<String, String> requestMap){
+        ObjetivoProceso objetivoProceso = new ObjetivoProceso();
+        objetivoProceso.setContenido(requestMap.get("contenido"));
+        return objetivoProceso;
     }
 
     private void insertar(Map<String,String> requestMap){
         try {
-            EnProceso enProceso = new EnProceso();
-            enProceso.setFechaElaboracion(Date.valueOf((requestMap.get("fechaElaboracion").toString())));
-            enProceso.setFechaEdicion(Date.valueOf((requestMap.get("fechaEdicion").toString())));
-            enProceso.setNoRevision(Integer.valueOf(requestMap.get("noRevision")));
-            enProceso.setCoDocumento((String) requestMap.get("coDocumento"));
-            enProceso.setNombreProceso((String) requestMap.get("nombreProceso"));
+            ObjetivoProceso objetivoProceso = new ObjetivoProceso();
+            objetivoProceso.setContenido((String) requestMap.get("contenido"));
+
 
         }catch (Exception exception){
             exception.printStackTrace();
