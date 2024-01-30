@@ -122,7 +122,7 @@ public class DoReferenciaProcesoServiceImpl implements DoReferenciaProcesoServic
 
     private boolean validateRegister(Map<String,String> requestMap){
         if (requestMap.containsKey("coDocumento") &&
-                requestMap.containsKey("NombreDocumento")){
+                requestMap.containsKey("nombreDocumento")){
             return true;
         }
         return false;
@@ -131,7 +131,7 @@ public class DoReferenciaProcesoServiceImpl implements DoReferenciaProcesoServic
     private DoReferenciaProceso getPolCalidadFromMap(Map<String, String> requestMap){
         DoReferenciaProceso doReferenciaProceso = new DoReferenciaProceso();
         doReferenciaProceso.setCoDocumento((String) requestMap.get("coDocumento"));
-        doReferenciaProceso.setNombreDocumento((String) requestMap.get("NombreDocumento"));
+        doReferenciaProceso.setNombreDocumento((String) requestMap.get("nombreDocumento"));
         return doReferenciaProceso;
     }
 
@@ -139,7 +139,7 @@ public class DoReferenciaProcesoServiceImpl implements DoReferenciaProcesoServic
         try {
             DoReferenciaProceso doReferenciaProceso = new DoReferenciaProceso();
             doReferenciaProceso.setCoDocumento((String) requestMap.get("coDocumento"));
-            doReferenciaProceso.setNombreDocumento((String) requestMap.get("NombreDocumento"));
+            doReferenciaProceso.setNombreDocumento((String) requestMap.get("nombreDocumento"));
 
         }catch (Exception exception){
             exception.printStackTrace();

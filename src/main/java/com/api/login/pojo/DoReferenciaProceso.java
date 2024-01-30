@@ -21,6 +21,6 @@ public class DoReferenciaProceso {
     @Column(name = "coDocumento")
     private String coDocumento;
 
-    @Column(name = "NombreDocumento")
-    private String NombreDocumento;
+    @Column(name = "nombreDocumento")
+    private String nombreDocumento;
 }
