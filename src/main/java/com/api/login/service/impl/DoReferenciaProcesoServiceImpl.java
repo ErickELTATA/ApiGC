@@ -63,7 +63,7 @@ public class DoReferenciaProcesoServiceImpl implements DoReferenciaProcesoServic
                 // Actualiza los campos del usuario con los valores proporcionados en el mapa
 
                 doReferenciaProceso.setCoDocumento(requestMap.get("coDocumento"));
-                doReferenciaProceso.setNombreDocumento(requestMap.get("NombreDocumento"));
+                doReferenciaProceso.setNombreDocumento(requestMap.get("nombreDocumento"));
 
 
                 // Actualiza el usuario en la base de datos
