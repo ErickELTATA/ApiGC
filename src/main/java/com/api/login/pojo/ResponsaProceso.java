@@ -12,9 +12,9 @@ import org.hibernate.annotations.DynamicUpdate;
 @Table(name = "responsaproceso")
 public class ResponsaProceso {
     @Id
-    @Column(name = "idDoReferenciaProceso")
+    @Column(name = "idResponsaProceso")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDoReferenciaProceso;
+    private Integer idResponsaProceso;
 
     @Column(name = "responsable")
     private String responsable;
