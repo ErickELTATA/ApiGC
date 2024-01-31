@@ -118,7 +118,7 @@ public class AbreProcesoServiceImpl implements AbreProcesoService {
 
 
     private boolean validateRegister(Map<String,String> requestMap){
-        if (requestMap.containsKey("Definicion")&&
+        if (requestMap.containsKey("Abreviaciones")&&
                 requestMap.containsKey("Definicion")){
             return true;
         }
