@@ -16,9 +16,9 @@ public class AbreProdeso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAbreProceso;
 
-    @Column(name = "Abreviaciones")
+    @Column(name = "abreviaciones")
     private String Abreviaciones;
 
-    @Column(name = "Definicion")
+    @Column(name = "definicion")
     private String Definicion;
 }

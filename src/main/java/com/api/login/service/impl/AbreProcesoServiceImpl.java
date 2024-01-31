@@ -59,8 +59,8 @@ public class AbreProcesoServiceImpl implements AbreProcesoService {
                 AbreProdeso abreProdeso = optionalUser.get();
 
                 // Actualiza los campos del usuario con los valores proporcionados en el mapa
-                abreProdeso.setAbreviaciones(requestMap.get("Abreviaciones"));
-                abreProdeso.setDefinicion(requestMap.get("Definicion"));
+                abreProdeso.setAbreviaciones(requestMap.get("abreviaciones"));
+                abreProdeso.setDefinicion(requestMap.get("definicion"));
 
 
                 // Actualiza el usuario en la base de datos
@@ -118,8 +118,8 @@ public class AbreProcesoServiceImpl implements AbreProcesoService {
 
 
     private boolean validateRegister(Map<String,String> requestMap){
-        if (requestMap.containsKey("Abreviaciones")&&
-                requestMap.containsKey("Definicion")){
+        if (requestMap.containsKey("abreviaciones")&&
+                requestMap.containsKey("definicion")){
             return true;
         }
         return false;
@@ -127,16 +127,16 @@ public class AbreProcesoServiceImpl implements AbreProcesoService {
 
     private AbreProdeso getMisionFromMap(Map<String, String> requestMap){
         AbreProdeso abreProdeso = new AbreProdeso();
-        abreProdeso.setAbreviaciones((String) requestMap.get("Abreviaciones"));
-        abreProdeso.setDefinicion((String) requestMap.get("Definicion"));
+        abreProdeso.setAbreviaciones((String) requestMap.get("abreviaciones"));
+        abreProdeso.setDefinicion((String) requestMap.get("definicion"));
         return abreProdeso;
     }
 
     private void insertar(Map<String,String> requestMap){
         try {
             AbreProdeso abreProdeso = new AbreProdeso();
-            abreProdeso.setAbreviaciones((String) requestMap.get("Abreviaciones"));
-            abreProdeso.setDefinicion((String) requestMap.get("Definicion"));
+            abreProdeso.setAbreviaciones((String) requestMap.get("abreviaciones"));
+            abreProdeso.setDefinicion((String) requestMap.get("definicion"));
 
 
         }catch (Exception exception){
