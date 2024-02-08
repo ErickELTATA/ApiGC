@@ -18,4 +18,7 @@ public class RegistrosProceso {
 
     @Column(name = "contenido")
     private String contenido;
+
+    @Column(name = "codigo")
+    private String codigo;
 }

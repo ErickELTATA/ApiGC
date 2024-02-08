@@ -60,6 +60,7 @@ public class RegistrosProcesoServiceImpl implements RegistrosProcesoService {
 
                 // Actualiza los campos del usuario con los valores proporcionados en el mapa
                 registrosProceso.setContenido(requestMap.get("contenido"));
+                registrosProceso.setCodigo(requestMap.get("codigo"));
 
 
                 // Actualiza el usuario en la base de datos
@@ -118,7 +119,7 @@ public class RegistrosProcesoServiceImpl implements RegistrosProcesoService {
 
     private boolean validateRegister(Map<String,String> requestMap){
         if (
-                requestMap.containsKey("contenido")){
+                requestMap.containsKey("contenido") && requestMap.containsKey("codigo")){
             return true;
         }
         return false;
@@ -127,6 +128,7 @@ public class RegistrosProcesoServiceImpl implements RegistrosProcesoService {
     private RegistrosProceso getPolCalidadFromMap(Map<String, String> requestMap){
         RegistrosProceso registrosProceso = new RegistrosProceso();
         registrosProceso.setContenido((String) requestMap.get("contenido"));
+        registrosProceso.setCodigo((String) requestMap.get("codigo"));
         return registrosProceso;
     }
 }
