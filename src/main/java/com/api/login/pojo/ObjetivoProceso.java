@@ -7,8 +7,6 @@ import org.hibernate.annotations.DynamicUpdate;
 
 @Data
 @Entity
-@DynamicUpdate
-@DynamicInsert
 @Table(name = "objetivoproceso")
 public class ObjetivoProceso {
     @Id
@@ -18,4 +16,8 @@ public class ObjetivoProceso {
 
     @Column(name = "contenido", length = 5000)
     private String contenido;
+
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "enproceso_id", referencedColumnName = "idEnProceso")
+    private EnProceso enProceso;
 }
