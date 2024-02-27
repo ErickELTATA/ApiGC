@@ -1,5 +1,6 @@
 package com.api.login.service;
 
+import com.api.login.dto.EnProcesoDTO;
 import com.api.login.pojo.EnProceso;
 import com.api.login.pojo.Mision;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -7,15 +8,17 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface EnProcesoService {
-    ResponseEntity<String> register(Map<String, String> requestMap);
+    List<EnProcesoDTO> getAllEnProceso();
 
-    ResponseEntity<String> update(Integer id, Map<String, String> requestMap);
+    Optional<EnProcesoDTO> getEnProcesoById(Integer id);
 
-    ResponseEntity<String> delete(Integer id);
+    EnProcesoDTO createEnProceso(EnProcesoDTO enProcesoDTO);
 
-    ResponseEntity<List<EnProceso>> getAllEnProceso();
+    EnProcesoDTO updateEnProceso(Integer id, EnProcesoDTO enProcesoDTO);
 
-
+    void deleteEnProceso(Integer id);
 }
+

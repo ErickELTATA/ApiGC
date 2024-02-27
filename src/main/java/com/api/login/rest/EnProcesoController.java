@@ -1,8 +1,8 @@
 package com.api.login.rest;
 
 import com.api.login.constantes.UsuarioConstantes;
+import com.api.login.dto.EnProcesoDTO;
 import com.api.login.pojo.EnProceso;
-import com.api.login.pojo.Mision;
 import com.api.login.service.EnProcesoService;
 import com.api.login.util.ResenaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,38 +21,25 @@ public class EnProcesoController {
     @Autowired
     private EnProcesoService enProcesoService;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registrarEmpresa(@RequestBody(required = true) Map<String,String> requestMap){
-        try {
-            return enProcesoService.register(requestMap);
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
-        return ResenaUtil.getResponseEntity1(UsuarioConstantes.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @PutMapping("/{id}")
-    public ResponseEntity<String> actualizarEmpresa(@PathVariable(required = true) Integer id, @RequestBody(required = true)Map<String, String> requestMap){
-        try {
-            return enProcesoService.update(id,requestMap);
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
-        return ResenaUtil.getResponseEntity1(UsuarioConstantes.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @GetMapping("/get")
-    public ResponseEntity<List<EnProceso>> listarEmpresas(){
-        try {
-            return enProcesoService.getAllEnProceso();
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
-        return new ResponseEntity<List<EnProceso>>(new ArrayList<>(),HttpStatus.INTERNAL_SERVER_ERROR);
+
+    @GetMapping
+    public ResponseEntity<List<EnProcesoDTO>> listarEnProceso(){
+        List<EnProcesoDTO> enProcesoDTOS = enProcesoService.getAllEnProceso();
+        return new ResponseEntity<>(enProcesoDTOS, HttpStatus.OK);
     }
 
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> borrarEmpresa(@PathVariable Integer id){
-        return  enProcesoService.delete(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<EnProcesoDTO> ListarPorId(@PathVariable Integer id){
+        return enProcesoService.getEnProcesoById(id)
+                .map(enProcesoDTO -> new ResponseEntity<>(enProcesoDTO, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping
+    public ResponseEntity<EnProcesoDTO> guardar(@RequestBody EnProcesoDTO enProcesoDTO){
+        EnProcesoDTO createdEnProcesoDTO = enProcesoService.createEnProceso(enProcesoDTO);
+        return new ResponseEntity<>(createdEnProcesoDTO,HttpStatus.OK);
     }
 
 }

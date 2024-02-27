@@ -2,8 +2,11 @@ package com.api.login.rest;
 
 
 import com.api.login.constantes.UsuarioConstantes;
+import com.api.login.dto.ObjetivoProcesoDTO;
+import com.api.login.mapper.ObjetivoProcesoMapper;
 import com.api.login.pojo.Mision;
 import com.api.login.pojo.ObjetivoProceso;
+import com.api.login.service.EnProcesoService;
 import com.api.login.service.ObjetivoProcesoService;
 import com.api.login.util.ResenaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,41 +22,49 @@ import java.util.Map;
 @RequestMapping(path = "/obproceso")
 public class ObjetivoProcesoController {
 
+
     @Autowired
     private ObjetivoProcesoService objetivoProcesoService;
 
+    @Autowired
+    private EnProcesoService enProcesoService;
 
+    @Autowired
+    private ObjetivoProcesoMapper objetivoProcesoMapper;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registrarEmpresa(@RequestBody(required = true) Map<String,String> requestMap){
-        try {
-            return objetivoProcesoService.register(requestMap);
-        }catch (Exception exception){
-            exception.printStackTrace();
+    @GetMapping
+    public ResponseEntity<List<ObjetivoProcesoDTO>> ListarObjetivoProceso(){
+        List<ObjetivoProcesoDTO> objetivoProceso = objetivoProcesoService.getAllObjetivoProceso();
+        return new ResponseEntity<>(objetivoProceso, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<ObjetivoProcesoDTO> guardarObjetivoProceso(@RequestBody ObjetivoProcesoDTO objetivoProcesoDTO){
+
+        ObjetivoProceso newObjetivoProceso = objetivoProcesoService.createObjetiviProceso(objetivoProcesoDTO);
+
+        if (newObjetivoProceso == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return ResenaUtil.getResponseEntity1(UsuarioConstantes.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        ObjetivoProcesoDTO newObjetivoProcesoDTO = objetivoProcesoMapper.toDTO(newObjetivoProceso);
+        return new ResponseEntity<>(newObjetivoProcesoDTO, HttpStatus.CREATED);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<String> actualizarEmpresa(@PathVariable(required = true) Integer id, @RequestBody(required = true)Map<String, String> requestMap){
-        try {
-            return objetivoProcesoService.update(id,requestMap);
-        }catch (Exception exception){
-            exception.printStackTrace();
+    /*
+    @PostMapping("/{idEnProceso}")
+    public ResponseEntity<ObjetivoProcesoDTO> guardarObjetivoProceso(@RequestBody ObjetivoProcesoDTO objetivoProcesoDTO, @PathVariable Integer idEnProceso){
+
+        ObjetivoProceso newObjetivoProceso = objetivoProcesoService.createObjetiviProceso(objetivoProcesoDTO,idEnProceso);
+
+        if (newObjetivoProceso == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return ResenaUtil.getResponseEntity1(UsuarioConstantes.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        ObjetivoProcesoDTO newObjetivoProcesoDTO = objetivoProcesoMapper.toDTO(newObjetivoProceso);
+        return new ResponseEntity<>(newObjetivoProcesoDTO, HttpStatus.CREATED);
+
     }
-    @GetMapping("/get")
-    public ResponseEntity<List<ObjetivoProceso>> listarEmpresas(){
-        try {
-            return objetivoProcesoService.getAllObjetivo();
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
-        return new ResponseEntity<List<ObjetivoProceso>>(new ArrayList<>(),HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> borrarEmpresa(@PathVariable Integer id){
-        return  objetivoProcesoService.delete(id);
-    }
+
+     */
 
 }
