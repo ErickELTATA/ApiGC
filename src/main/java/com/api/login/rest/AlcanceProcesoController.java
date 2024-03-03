@@ -1,9 +1,12 @@
 package com.api.login.rest;
 
 import com.api.login.constantes.UsuarioConstantes;
+import com.api.login.dto.AlcanceProcesoDTO;
+import com.api.login.mapper.AlcanceProcesoMapper;
 import com.api.login.pojo.AlcanceProceso;
-import com.api.login.pojo.ObjetivoProceso;
+
 import com.api.login.service.AlcancePrecesoService;
+import com.api.login.service.EnProcesoService;
 import com.api.login.util.ResenaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,40 +21,29 @@ import java.util.Map;
 @RequestMapping(path = "/alproceso")
 public class AlcanceProcesoController {
 
+
     @Autowired
     private AlcancePrecesoService alcancePrecesoService;
 
+    @Autowired
+    private AlcanceProcesoMapper alcanceProcesoMapper;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registrarEmpresa(@RequestBody(required = true) Map<String,String> requestMap){
-        try {
-            return alcancePrecesoService.register(requestMap);
-        }catch (Exception exception){
-            exception.printStackTrace();
+    @GetMapping
+    public ResponseEntity<List<AlcanceProcesoDTO>> listaralcanceProceso(){
+        List<AlcanceProcesoDTO> alcanceProceso =  alcancePrecesoService.getAllAlcanceProceso();
+        return new ResponseEntity<>(alcanceProceso, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<AlcanceProcesoDTO> guardarAlcanceProceso(@RequestBody AlcanceProcesoDTO alcanceProcesoDTO){
+        AlcanceProceso alcanceProceso = alcancePrecesoService.createAlcanceProceso(alcanceProcesoDTO);
+
+        if(alcanceProceso == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return ResenaUtil.getResponseEntity1(UsuarioConstantes.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        AlcanceProcesoDTO alcanceProcesoDTO1 = alcanceProcesoMapper.toDTO(alcanceProceso);
+        return new ResponseEntity<>(alcanceProcesoDTO1,HttpStatus.CREATED);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<String> actualizarEmpresa(@PathVariable(required = true) Integer id, @RequestBody(required = true)Map<String, String> requestMap){
-        try {
-            return alcancePrecesoService.update(id,requestMap);
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
-        return ResenaUtil.getResponseEntity1(UsuarioConstantes.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @GetMapping("/get")
-    public ResponseEntity<List<AlcanceProceso>> listarEmpresas(){
-        try {
-            return alcancePrecesoService.getAllAlcance();
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
-        return new ResponseEntity<List<AlcanceProceso>>(new ArrayList<>(),HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> borrarEmpresa(@PathVariable Integer id){
-        return  alcancePrecesoService.delete(id);
-    }
+
 
 }

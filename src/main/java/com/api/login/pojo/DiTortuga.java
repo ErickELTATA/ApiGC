@@ -16,9 +16,10 @@ public class DiTortuga {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idDiTortuga;
 
-    @Column(name = "nombreproceso")
+   @Column(name = "nombreproceso")
     private String nombreproceso;
 
     @Column(name = "descripcion")
     private String descripcion;
+
 }
