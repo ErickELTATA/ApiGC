@@ -19,4 +19,8 @@ public class DesarrolloProceso {
 
     @Column(name = "contenido", length = 5000)
     private String contenido;
+
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "enproceso_id", referencedColumnName = "idEnProceso")
+    private EnProceso enProceso;
 }

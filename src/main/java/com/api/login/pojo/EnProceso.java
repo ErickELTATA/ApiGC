@@ -40,4 +40,7 @@ public class EnProceso {
 
     @OneToOne(mappedBy = "enProceso")
     private AlcanceProceso alcanceProceso;
+
+    @OneToOne(mappedBy = "enProceso")
+    private DesarrolloProceso desarrolloProceso;
 }

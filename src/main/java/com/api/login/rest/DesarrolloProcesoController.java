@@ -1,6 +1,8 @@
 package com.api.login.rest;
 
 import com.api.login.constantes.UsuarioConstantes;
+import com.api.login.dto.DesarrolloProcesoDTO;
+import com.api.login.mapper.DesarrolloProcesoMapper;
 import com.api.login.pojo.DesarrolloProceso;
 import com.api.login.pojo.Mision;
 import com.api.login.service.DesarrolloProcesoService;
@@ -21,38 +23,24 @@ public class DesarrolloProcesoController {
     @Autowired
     private DesarrolloProcesoService desarrolloProcesoService;
 
+    @Autowired
+    private DesarrolloProcesoMapper desarrolloProcesoMapper;
 
+    @GetMapping
+    public ResponseEntity<List<DesarrolloProcesoDTO>> listarDesarrolloProceso(){
+        List<DesarrolloProcesoDTO> desarrolloProceso = desarrolloProcesoService.getAllDesarrolloProceso();
+        return new ResponseEntity<>(desarrolloProceso,HttpStatus.OK);
+    }
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registrarEmpresa(@RequestBody(required = true) Map<String,String> requestMap){
-        try {
-            return desarrolloProcesoService.register(requestMap);
-        }catch (Exception exception){
-            exception.printStackTrace();
+    @PostMapping
+    public ResponseEntity<DesarrolloProcesoDTO> guardarDesarrolloProceso(@RequestBody DesarrolloProcesoDTO desarrolloProcesoDTO){
+        DesarrolloProceso desarrolloProceso = desarrolloProcesoService.createDesarrolloProceso(desarrolloProcesoDTO);
+        if(desarrolloProceso == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return ResenaUtil.getResponseEntity1(UsuarioConstantes.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @PutMapping("/{id}")
-    public ResponseEntity<String> actualizarEmpresa(@PathVariable(required = true) Integer id, @RequestBody(required = true)Map<String, String> requestMap){
-        try {
-            return desarrolloProcesoService.update(id,requestMap);
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
-        return ResenaUtil.getResponseEntity1(UsuarioConstantes.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @GetMapping("/get")
-    public ResponseEntity<List<DesarrolloProceso>> listarEmpresas(){
-        try {
-            return desarrolloProcesoService.getAll();
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
-        return new ResponseEntity<List<DesarrolloProceso>>(new ArrayList<>(),HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> borrarEmpresa(@PathVariable Integer id){
-        return  desarrolloProcesoService.delete(id);
+
+        DesarrolloProcesoDTO desarrolloProcesoDTO1 = desarrolloProcesoMapper.toDTO(desarrolloProceso);
+        return new ResponseEntity<>(desarrolloProcesoDTO1,HttpStatus.CREATED);
     }
 
 }
