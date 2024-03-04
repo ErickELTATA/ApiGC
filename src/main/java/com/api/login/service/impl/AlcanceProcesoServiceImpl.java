@@ -35,12 +35,6 @@ public class AlcanceProcesoServiceImpl implements AlcancePrecesoService {
     @Autowired
     private AlcanceProcesoMapper alcanceProcesoMapper;
 
-    @Autowired
-    private EnProcesoService enProcesoService;
-
-    @Autowired
-    private EnProcesoMapper enProcesoMapper;
-
 
     @Override
     public List<AlcanceProcesoDTO> getAllAlcanceProceso() {
@@ -52,12 +46,6 @@ public class AlcanceProcesoServiceImpl implements AlcancePrecesoService {
 
     @Override
     public AlcanceProceso createAlcanceProceso(AlcanceProcesoDTO alcanceProcesoDTO) {
-        EnProcesoDTO enProcesoDTO = enProcesoService.getEnProcesoById(alcanceProcesoDTO.getIdEnProceso()).orElse(null);
-        if (enProcesoDTO == null){
-            return null;
-        }
-        EnProceso enProceso = enProcesoMapper.toEntity(enProcesoDTO);
-
         AlcanceProceso alcanceProceso = alcanceProcesoMapper.toEntity(alcanceProcesoDTO);
         return alcanceProcesoDao.save(alcanceProceso);
     }

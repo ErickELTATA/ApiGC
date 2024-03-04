@@ -1,6 +1,9 @@
 package com.api.login.rest;
 
 import com.api.login.constantes.UsuarioConstantes;
+import com.api.login.dto.DistribucionProcesoDTO;
+import com.api.login.mapper.DistribucionProcesoMapper;
+import com.api.login.pojo.AlcanceProceso;
 import com.api.login.pojo.DiTortuga;
 import com.api.login.pojo.DistribucionProceso;
 import com.api.login.service.DistribucionProcesoService;
@@ -21,36 +24,25 @@ public class DistribucionProcesoController {
     @Autowired
     private DistribucionProcesoService distribucionProcesoService;
 
+    @Autowired
+    private DistribucionProcesoMapper distribucionProcesoMapper;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registrarEmpresa(@RequestBody(required = true) Map<String,String> requestMap){
-        try {
-            return distribucionProcesoService.register(requestMap);
-        }catch (Exception exception){
-            exception.printStackTrace();
+    @GetMapping
+    public ResponseEntity<List<DistribucionProcesoDTO>> listarDistribucionProceso(){
+        List<DistribucionProcesoDTO> distribucionProceso = distribucionProcesoService.getAllDistribucionProceso();
+        return new ResponseEntity<>(distribucionProceso, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<DistribucionProcesoDTO> guardarDistribucionProceso(@RequestBody DistribucionProcesoDTO dto){
+        DistribucionProceso distribucionProceso = distribucionProcesoService.createDistribucionProceso(dto);
+
+        if(distribucionProceso == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return ResenaUtil.getResponseEntity1(UsuarioConstantes.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        DistribucionProcesoDTO dto1 = distribucionProcesoMapper.toDTO(distribucionProceso);
+        return new ResponseEntity<>(dto1,HttpStatus.CREATED);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<String> actualizarEmpresa(@PathVariable(required = true) Integer id, @RequestBody(required = true)Map<String, String> requestMap){
-        try {
-            return distribucionProcesoService.update(id,requestMap);
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
-        return ResenaUtil.getResponseEntity1(UsuarioConstantes.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @GetMapping("/get")
-    public ResponseEntity<List<DistribucionProceso>> listarEmpresas(){
-        try {
-            return distribucionProcesoService.getAll();
-        }catch (Exception exception){
-            exception.printStackTrace();
-        }
-        return new ResponseEntity<List<DistribucionProceso>>(new ArrayList<>(),HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> borrarEmpresa(@PathVariable Integer id){
-        return  distribucionProcesoService.delete(id);
-    }
+
 }

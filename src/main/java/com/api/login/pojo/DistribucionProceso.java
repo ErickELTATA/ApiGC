@@ -19,4 +19,8 @@ public class DistribucionProceso {
 
     @Column(name = "contenido")
     private String contenido;
+
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "enproceso_id", referencedColumnName = "idEnProceso")
+    private EnProceso enProceso;
 }

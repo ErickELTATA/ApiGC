@@ -43,4 +43,8 @@ public class EnProceso {
 
     @OneToOne(mappedBy = "enProceso")
     private DesarrolloProceso desarrolloProceso;
+
+    @OneToOne(mappedBy = "enProceso")
+    private DistribucionProceso distribucionProceso;
+
 }
