@@ -35,4 +35,7 @@ public class EnProceso {
     @Column(name = "nombreProceso")
     private String nombreProceso;
 
+    @Column(name = "coPie")
+    private String coPie;
+
 }

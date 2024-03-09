@@ -129,6 +129,7 @@ public class EnProcesoServiceImpl implements EnProcesoService {
         enProceso.setNoRevision(Integer.valueOf(requestMap.get("noRevision")));
         enProceso.setCoDocumento(requestMap.get("coDocumento"));
         enProceso.setNombreProceso(requestMap.get("nombreProceso"));
+
         return enProceso;
     }
 
@@ -137,7 +138,8 @@ public class EnProcesoServiceImpl implements EnProcesoService {
                 requestMap.containsKey("fechaEdicion") &&
                 requestMap.containsKey("noRevision") &&
                 requestMap.containsKey("coDocumento") &&
-                requestMap.containsKey("nombreProceso")){
+                requestMap.containsKey("nombreProceso") &&
+                requestMap.containsKey("coPie")){
             return true;
         }
         return false;
@@ -150,6 +152,7 @@ public class EnProcesoServiceImpl implements EnProcesoService {
         enProceso.setNoRevision(Integer.valueOf(requestMap.get("noRevision")));
         enProceso.setCoDocumento((String) requestMap.get("coDocumento"));
         enProceso.setNombreProceso((String) requestMap.get("nombreProceso"));
+        enProceso.setCoPie(requestMap.get("coPie"));
         return enProceso;
     }
 

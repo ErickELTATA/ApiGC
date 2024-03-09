@@ -1,7 +1,6 @@
 package com.api.login.dao;
 
 import com.api.login.pojo.User;
-import com.api.login.wrapper.UserWrapper;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,9 +13,6 @@ import java.util.List;
 public interface UserDao extends JpaRepository<User, Integer> {
 
     User findByEmail(@Param(("email")) String email);
-
-    List<UserWrapper> getAllUsers();
-
 
     @Transactional
     @Modifying

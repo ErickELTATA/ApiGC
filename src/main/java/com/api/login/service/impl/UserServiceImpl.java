@@ -8,8 +8,7 @@ import com.api.login.security.jwt.JwtFilter;
 import com.api.login.security.jwt.JwtUtil;
 import com.api.login.service.UserService;
 import com.api.login.util.UsuarioUtil;
-import com.api.login.wrapper.UserWrapper;
-import jakarta.persistence.criteria.CriteriaBuilder;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -85,12 +84,12 @@ public class UserServiceImpl  implements UserService {
     }
 
     @Override
-    public ResponseEntity<List<UserWrapper>> getAllUsers() {
+    public ResponseEntity<List<User>> getAllUsers() {
 
         try {
 
             if (jwtFilter.isAdmin()){
-                return new ResponseEntity<>(userDao.getAllUsers(),HttpStatus.OK);
+                return new ResponseEntity<>(userDao.findAll(),HttpStatus.OK);
             }else {
                 return new ResponseEntity<>(new ArrayList<>(),HttpStatus.UNAUTHORIZED);
             }

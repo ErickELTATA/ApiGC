@@ -1,6 +1,6 @@
 package com.api.login.service;
 
-import com.api.login.wrapper.UserWrapper;
+import com.api.login.pojo.User;
 import org.springframework.http.ResponseEntity;
 
 
@@ -13,7 +13,7 @@ public interface UserService {
 
     ResponseEntity<String> login(Map<String,String> requestMap);
 
-    ResponseEntity<List<UserWrapper>> getAllUsers();
+    ResponseEntity<List<User>> getAllUsers();
 
     ResponseEntity<String> update(Map<String,String> requestMap);
 }
