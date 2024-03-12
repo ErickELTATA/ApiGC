@@ -122,7 +122,7 @@ public class PuestoServiceImpl implements PuestoService {
     private boolean validateRegister(Map<String,String> requestMap){
         if (requestMap.containsKey("namePosition") &&
                 requestMap.containsKey("deparmentPosition") &&
-                requestMap.containsKey("funtionsPositio")){
+                requestMap.containsKey("funtionsPosition")){
             return true;
         }
         return false;
@@ -132,7 +132,7 @@ public class PuestoServiceImpl implements PuestoService {
         Puesto puesto = new Puesto();
         puesto.setNamePosition(requestMap.get("namePosition"));
         puesto.setDeparmentPosition(requestMap.get("deparmentPosition"));
-        puesto.setFuntionsPosition(requestMap.get("funtionsPositio"));
+        puesto.setFuntionsPosition(requestMap.get("funtionsPosition"));
         return puesto;
     }
 
