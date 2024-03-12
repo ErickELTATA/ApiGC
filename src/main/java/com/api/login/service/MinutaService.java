@@ -10,4 +10,8 @@ public interface MinutaService {
     List<MinutaDTO> getAllMinunta();
 
     MinutaDTO createMinuta(MinutaDTO minutaDTO);
+
+    MinutaDTO updateMinuta( Integer idMinuta, MinutaDTO minutaDTO);
+
+    void eliminar(Integer idMinuta);
 }

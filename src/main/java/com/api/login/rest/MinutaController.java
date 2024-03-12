@@ -21,10 +21,25 @@ public class MinutaController {
         List<MinutaDTO> minutaDTOS = minutaService.getAllMinunta();
         return new ResponseEntity<>(minutaDTOS, HttpStatus.OK);
     }
-
     @PostMapping
     public ResponseEntity<MinutaDTO> guardar(@RequestBody MinutaDTO minutaDTO){
         MinutaDTO create = minutaService.createMinuta(minutaDTO);
         return new ResponseEntity<>(create, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<MinutaDTO> actualizar(@PathVariable Integer id, @RequestBody MinutaDTO minutaDTO){
+        MinutaDTO update = minutaService.updateMinuta(id, minutaDTO);
+        if (update != null){
+            return new ResponseEntity<>(update, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable Integer id){
+        minutaService.eliminar(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
