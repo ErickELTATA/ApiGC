@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.sql.Date;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -46,5 +47,8 @@ public class EnProceso {
 
     @OneToOne(mappedBy = "enProceso")
     private DistribucionProceso distribucionProceso;
+
+    @OneToMany(mappedBy = "enProceso", fetch = FetchType.LAZY)
+    private Collection<DoReferenciaProceso> doReferenciaProcesos;
 
 }

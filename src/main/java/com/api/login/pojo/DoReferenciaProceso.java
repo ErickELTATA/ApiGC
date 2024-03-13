@@ -23,4 +23,8 @@ public class DoReferenciaProceso {
 
     @Column(name = "nombreDocumento")
     private String nombreDocumento;
+
+    @ManyToOne
+    @JoinColumn(name = "enproceso_id", referencedColumnName = "idEnProceso")
+    private EnProceso enProceso;
 }
