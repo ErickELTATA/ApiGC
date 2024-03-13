@@ -12,7 +12,6 @@ public class MinutaMapper {
 
         minutaDTO.setIdMinuta(minuta.getIdMinuta());
         minutaDTO.setCoDocumento(minuta.getCoDocumento());
-        minutaDTO.setTitulo(minuta.getTitulo());
         minutaDTO.setFechaEmision(minuta.getFechaEmision());
         minutaDTO.setFechaRevision(minuta.getFechaRevision());
 
@@ -37,7 +36,6 @@ public class MinutaMapper {
 
         minuta.setIdMinuta(minutaDTO.getIdMinuta());
         minuta.setCoDocumento(minutaDTO.getCoDocumento());
-        minuta.setTitulo(minutaDTO.getTitulo());
         minuta.setFechaEmision(minutaDTO.getFechaEmision());
         minuta.setFechaRevision(minutaDTO.getFechaRevision());
 

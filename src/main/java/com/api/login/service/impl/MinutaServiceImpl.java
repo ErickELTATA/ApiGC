@@ -42,7 +42,6 @@ public class MinutaServiceImpl implements MinutaService {
         if(optionalMinuta.isPresent()){
             Minuta minuta = optionalMinuta.get();
             minuta.setCoDocumento(minutaDTO.getCoDocumento());
-            minuta.setTitulo(minutaDTO.getTitulo());
             minuta.setFechaEmision(minutaDTO.getFechaEmision());
             minuta.setFechaRevision(minutaDTO.getFechaRevision());
 

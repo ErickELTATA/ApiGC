@@ -22,8 +22,6 @@ public class Minuta {
     //encabezado
     private String coDocumento;
 
-    private String titulo;
-
     private Date fechaEmision;
 
     private Date fechaRevision;
