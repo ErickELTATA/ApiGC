@@ -13,6 +13,8 @@ public class MinutaReDireccionDTO {
     private Date fechaEmision;
 
     private Date fechaRevision;
+
+    private String noRevision;
     // Contenido
 
     private String objetivo;

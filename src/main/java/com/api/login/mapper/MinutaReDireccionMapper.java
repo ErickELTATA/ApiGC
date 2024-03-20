@@ -14,6 +14,8 @@ public class MinutaReDireccionMapper {
         dto.setCoDocumento(minutaReDireccion.getCoDocumento());
         dto.setFechaEmision(minutaReDireccion.getFechaEmision());
         dto.setFechaRevision(minutaReDireccion.getFechaRevision());
+        dto.setNoRevision(minutaReDireccion.getNoRevision());
+
         dto.setObjetivo(minutaReDireccion.getObjetivo());
         dto.setFecha(minutaReDireccion.getFecha());
         dto.setParticipantes(minutaReDireccion.getParticipantes());
@@ -35,6 +37,8 @@ public class MinutaReDireccionMapper {
         minuta.setCoDocumento(dto.getCoDocumento());
         minuta.setFechaEmision(dto.getFechaEmision());
         minuta.setFechaRevision(dto.getFechaRevision());
+        minuta.setNoRevision(dto.getNoRevision());
+
         minuta.setObjetivo(dto.getObjetivo());
         minuta.setFecha(dto.getFecha());
         minuta.setParticipantes(dto.getParticipantes());

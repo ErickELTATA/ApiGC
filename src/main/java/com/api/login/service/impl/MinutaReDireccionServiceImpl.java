@@ -46,6 +46,7 @@ public class MinutaReDireccionServiceImpl implements MinutaReDireccionService {
             minuta.setCoDocumento(minutaReDireccionDTO.getCoDocumento());
             minuta.setFechaEmision(minutaReDireccionDTO.getFechaEmision());
             minuta.setFechaRevision(minutaReDireccionDTO.getFechaRevision());
+            minuta.setNoRevision(minutaReDireccionDTO.getNoRevision());
 
             minuta.setObjetivo(minutaReDireccionDTO.getObjetivo());
             minuta.setFecha(minutaReDireccionDTO.getFecha());
