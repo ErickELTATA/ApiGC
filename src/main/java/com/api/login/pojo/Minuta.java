@@ -25,6 +25,8 @@ public class Minuta {
     private Date fechaEmision;
 
     private Date fechaRevision;
+
+    private String noRevision;
     // Contenido
 
     private String objetivo;
