@@ -1,17 +1,12 @@
-package com.api.login.pojo;
+package com.api.login.DTO;
 
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Date;
 
 @Data
-@Entity
-@Table(name = "cartaNombramiento")
-public class CartaNombramiento {
-    @Id
-    @Column(name = "idCartaNombramiento")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CartaNombramientoDTO {
+
     private Integer idCartaNombramiento;
 
     //encabezado
@@ -46,5 +41,4 @@ public class CartaNombramiento {
     private String politicasNormativas;
 
     private String cargoDelRemitente;
-
 }
