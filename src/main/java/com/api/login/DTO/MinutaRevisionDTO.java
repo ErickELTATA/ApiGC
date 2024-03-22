@@ -14,6 +14,8 @@ public class MinutaRevisionDTO {
     private Date fechaEmision;
 
     private Date fechaRevision;
+
+    private String noRevision;
     // Contenido
 
     private String objetivo;

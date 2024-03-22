@@ -45,6 +45,7 @@ public class MinutaRevisionServiceImpl implements MinutaRevisionService {
             minuta.setCoDocumento(minutaRevisionDTO.getCoDocumento());
             minuta.setFechaEmision(minutaRevisionDTO.getFechaEmision());
             minuta.setFechaRevision(minutaRevisionDTO.getFechaRevision());
+            minuta.setNoRevision(minutaRevisionDTO.getNoRevision());
 
             minuta.setObjetivo(minutaRevisionDTO.getObjetivo());
             minuta.setFecha(minutaRevisionDTO.getFecha());
