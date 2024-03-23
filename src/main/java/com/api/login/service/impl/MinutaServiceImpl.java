@@ -41,6 +41,7 @@ public class MinutaServiceImpl implements MinutaService {
         Optional<Minuta> optionalMinuta = minutaDao.findById(idMinuta);
         if(optionalMinuta.isPresent()){
             Minuta minuta = optionalMinuta.get();
+
             minuta.setCoDocumento(minutaDTO.getCoDocumento());
             minuta.setFechaEmision(minutaDTO.getFechaEmision());
             minuta.setFechaRevision(minutaDTO.getFechaRevision());
