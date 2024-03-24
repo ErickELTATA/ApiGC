@@ -2,15 +2,11 @@ package com.api.login.pojo;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import java.sql.Date;
 
 @Data
 @Entity
-@DynamicUpdate
-@DynamicInsert
 @Table(name = "minutaReDireccion")
 public class MinutaReDireccion {
     @Id
