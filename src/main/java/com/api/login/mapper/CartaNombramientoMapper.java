@@ -26,7 +26,6 @@ public class CartaNombramientoMapper {
         dto.setHorarioLaboral(cartaNombramiento.getHorarioLaboral());
         dto.setBeneficiosAdicionales(cartaNombramiento.getBeneficiosAdicionales());
         dto.setPoliticasNormativas(cartaNombramiento.getPoliticasNormativas());
-        dto.setCargoDelRemitente(cartaNombramiento.getCargoDelRemitente());
 
         return dto;
     }
@@ -51,7 +50,6 @@ public class CartaNombramientoMapper {
         cartaNombramiento.setHorarioLaboral(dto.getHorarioLaboral());
         cartaNombramiento.setBeneficiosAdicionales(dto.getBeneficiosAdicionales());
         cartaNombramiento.setPoliticasNormativas(dto.getPoliticasNormativas());
-        cartaNombramiento.setCargoDelRemitente(dto.getCargoDelRemitente());
 
         return cartaNombramiento;
     }

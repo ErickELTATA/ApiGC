@@ -58,7 +58,6 @@ public class CartaNombramientoServiceImpl implements CartaNombramientoService {
             carta.setHorarioLaboral(cartaNombramientoDTO.getHorarioLaboral());
             carta.setBeneficiosAdicionales(cartaNombramientoDTO.getBeneficiosAdicionales());
             carta.setPoliticasNormativas(cartaNombramientoDTO.getPoliticasNormativas());
-            carta.setCargoDelRemitente(cartaNombramientoDTO.getCargoDelRemitente());
 
             carta = cartaNombramientoDao.save(carta);
             return mapper.toDTO(carta);

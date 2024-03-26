@@ -45,6 +45,4 @@ public class CartaNombramiento {
 
     private String politicasNormativas;
 
-    private String cargoDelRemitente;
-
 }

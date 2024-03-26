@@ -40,5 +40,4 @@ public class CartaNombramientoDTO {
 
     private String politicasNormativas;
 
-    private String cargoDelRemitente;
 }
