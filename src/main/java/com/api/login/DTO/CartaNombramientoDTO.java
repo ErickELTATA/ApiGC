@@ -36,7 +36,7 @@ public class CartaNombramientoDTO {
 
     private String horarioLaboral;
 
-    private String BeneficiosAdicionales;
+    private String beneficiosAdicionales;
 
     private String politicasNormativas;
 

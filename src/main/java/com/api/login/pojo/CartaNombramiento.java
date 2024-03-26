@@ -7,7 +7,7 @@ import java.sql.Date;
 
 @Data
 @Entity
-@Table(name = "cartaNombramiento")
+@Table(name = "CartaNombramiento")
 public class CartaNombramiento {
     @Id
     @Column(name = "idCartaNombramiento")
@@ -41,7 +41,7 @@ public class CartaNombramiento {
 
     private String horarioLaboral;
 
-    private String BeneficiosAdicionales;
+    private String beneficiosAdicionales;
 
     private String politicasNormativas;
 
